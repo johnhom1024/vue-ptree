@@ -2,6 +2,8 @@
 
 > A permission-tree component support for Vue.js
 
+![image](https://github.com/jawnwa22/vue-ptree/master/example.jpg)
+
 ## Build Setup
 
 ```
