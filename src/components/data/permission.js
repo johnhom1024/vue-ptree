@@ -23,69 +23,69 @@ let full_pm_list = [
         "id": "5cae05bb899173245e09039e",
         "type": 1
     },
-    {
-        "code": "customer_info_manage",
-        "name": "customer_info_manage",
-        "pid": "5cae05bb899173245e09039d",
-        "id": "5cae05bb899173245e09039f",
-        "type": 1
-    },
-    {
-        "code": "customer_equipment_manage",
-        "name": "customer_equipment_manage",
-        "pid": "5cae05bb899173245e09039d",
-        "id": "5cae05bb899173245e0903a0",
-        "type": 1
-    },
-    {
-        "code": "customer_bo_manage",
-        "name": "customer_bo_manage",
-        "pid": "5cae05bb899173245e09039d",
-        "id": "5cae05bb899173245e0903a1",
-        "type": 1
-    },
-    {
-        "code": "customer_satisfaction_manage",
-        "name": "customer_satisfaction_manage",
-        "pid": "5cae05bb899173245e09039d",
-        "id": "5cae05bb899173245e0903a2",
-        "type": 1
-    },
-    {
-        "code": "customer_info_manage_add",
-        "name": "customer_info_manage_add",
-        "pid": "5cae05bb899173245e09039f",
-        "id": "5cae05bb899173245e0903a3",
-        "type": 3
-    },
-    {
-        "code": "customer_info_manage_export",
-        "name": "customer_info_manage_export",
-        "pid": "5cae05bb899173245e09039f",
-        "id": "5cae05bb899173245e0903a4",
-        "type": 3
-    },
-    {
-        "code": "customer_info_manage_info",
-        "name": "customer_info_manage_info",
-        "pid": "5cae05bb899173245e09039f",
-        "id": "5cae05bb899173245e0903a5",
-        "type": 3
-    },
-    {
-        "code": "customer_info_manage_import",
-        "name": "customer_info_manage_import",
-        "pid": "5cae05bb899173245e09039f",
-        "id": "5cae05bb899173245e0903a6",
-        "type": 3
-    },
-    {
-        "code": "customer_info_manage_delete",
-        "name": "customer_info_manage_delete",
-        "pid": "5cae05bb899173245e09039f",
-        "id": "5cae05bb899173245e0903a7",
-        "type": 3
-    },
+    // {
+    //     "code": "customer_info_manage",
+    //     "name": "customer_info_manage",
+    //     "pid": "5cae05bb899173245e09039d",
+    //     "id": "5cae05bb899173245e09039f",
+    //     "type": 1
+    // },
+    // {
+    //     "code": "customer_equipment_manage",
+    //     "name": "customer_equipment_manage",
+    //     "pid": "5cae05bb899173245e09039d",
+    //     "id": "5cae05bb899173245e0903a0",
+    //     "type": 1
+    // },
+    // {
+    //     "code": "customer_bo_manage",
+    //     "name": "customer_bo_manage",
+    //     "pid": "5cae05bb899173245e09039d",
+    //     "id": "5cae05bb899173245e0903a1",
+    //     "type": 1
+    // },
+    // {
+    //     "code": "customer_satisfaction_manage",
+    //     "name": "customer_satisfaction_manage",
+    //     "pid": "5cae05bb899173245e09039d",
+    //     "id": "5cae05bb899173245e0903a2",
+    //     "type": 1
+    // },
+    // {
+    //     "code": "customer_info_manage_add",
+    //     "name": "customer_info_manage_add",
+    //     "pid": "5cae05bb899173245e09039f",
+    //     "id": "5cae05bb899173245e0903a3",
+    //     "type": 3
+    // },
+    // {
+    //     "code": "customer_info_manage_export",
+    //     "name": "customer_info_manage_export",
+    //     "pid": "5cae05bb899173245e09039f",
+    //     "id": "5cae05bb899173245e0903a4",
+    //     "type": 3
+    // },
+    // {
+    //     "code": "customer_info_manage_info",
+    //     "name": "customer_info_manage_info",
+    //     "pid": "5cae05bb899173245e09039f",
+    //     "id": "5cae05bb899173245e0903a5",
+    //     "type": 3
+    // },
+    // {
+    //     "code": "customer_info_manage_import",
+    //     "name": "customer_info_manage_import",
+    //     "pid": "5cae05bb899173245e09039f",
+    //     "id": "5cae05bb899173245e0903a6",
+    //     "type": 3
+    // },
+    // {
+    //     "code": "customer_info_manage_delete",
+    //     "name": "customer_info_manage_delete",
+    //     "pid": "5cae05bb899173245e09039f",
+    //     "id": "5cae05bb899173245e0903a7",
+    //     "type": 3
+    // },
     // {
     //     "code": "customer_equipment_manage_add",
     //     "name": "customer_equipment_manage_add",
