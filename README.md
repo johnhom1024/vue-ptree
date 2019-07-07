@@ -67,6 +67,7 @@ let role_list = [
 ### 使用ptree组件的一个简单例子
 
 下面的例子将会说明在`vue-cli`中如何使用该权限树组件。
+
 ```javascript
 <template>
     <div id="app">
@@ -117,5 +118,9 @@ export default {
 };
 </script>
 ```
+
+示例的运行结果如下：
+
+![image](https://github.com/jawnwa22/vue-ptree/raw/master/example_1.jpg)
 
 
