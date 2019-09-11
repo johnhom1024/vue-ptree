@@ -3,7 +3,7 @@
  * @Date: 2019-06-17 11:50:36
  * @Author: jawnwa22
  * @LastEditors: jawnwa22
- * @LastEditTime: 2019-07-05 07:51:15
+ * @LastEditTime: 2019-09-11 10:54:23
  -->
 <template lang="pug">
     li.item
@@ -90,12 +90,14 @@ export default {
         },
         // 初始化
         init() {
-            setTimeout(() => {
-                this.$nextTick(() => {
-                    this.childRef = this.$refs.child;
-                    this.flash = true; // 初始化完毕
-                });
-            }, 2000);
+            if (
+                this.$refs.child &&
+                this.$refs.child.length !== this.childNode.length
+            ) {
+                this.init();
+            } else {
+                this.childRef = this.$refs.child;
+            }
         },
         // 初始化check的值
         // 通过查询tree_pm权限数组中的元素是否存在节点自身的id
@@ -107,10 +109,13 @@ export default {
             if (deleteIndex !== -1) {
                 this.tree_pm.splice(deleteIndex, 1);
                 this.check = true;
+                this.$nextTick(() => {
+                    this.flash = true;
+                });
             }
         },
         updateRole(check) {
-            if (this.flash === false) return;
+            if (!this.flash) return;
             let deleteIndex = 0;
             switch (check) {
                 case true:
@@ -149,9 +154,9 @@ export default {
         // 根据所有子节点的check值更新当前节点的状态
         status() {
             if (!this.childRef) return this.check ? "all" : "none";
-            let total = 0; // check值为1的子节点之和
+            let total = 0; // check值为true的子节点之和
             this.childRef.forEach(item => {
-                total = total + item.check ? 1 : 0;
+                item.check ? total++ : 0;
             });
             // 根据total决定status的值
             switch (total) {
@@ -198,8 +203,8 @@ export default {
                     _childHeight =
                         _childHeight + this.childRef[index].allHeight;
                 }
-                    //只需要最后一个子节点的高度的一半
-                    _childHeight = _childHeight + box_height / 2;
+                //只需要最后一个子节点的高度的一半
+                _childHeight = _childHeight + box_height / 2;
             }
             return box_padding + _childHeight;
         }
@@ -290,7 +295,6 @@ $lighten-1: #f9ce8c;
     border: 1px solid $lighten-2;
     box-sizing: border-box;
     // box-sizing: content-box;
-    
 }
 .icon-check {
     margin-left: 12px;
