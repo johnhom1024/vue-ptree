@@ -3,7 +3,7 @@
  * @Date: 2019-06-17 11:50:36
  * @Author: jawnwa22
  * @LastEditors: jawnwa22
- * @LastEditTime: 2019-09-11 10:54:23
+ * @LastEditTime: 2019-09-11 19:50:21
  -->
 <template lang="pug">
     li.item
@@ -106,13 +106,11 @@ export default {
                 return;
             }
             let deleteIndex = this.tree_pm.indexOf(this.node.id);
-            if (deleteIndex !== -1) {
-                this.tree_pm.splice(deleteIndex, 1);
-                this.check = true;
-                this.$nextTick(() => {
-                    this.flash = true;
-                });
-            }
+            this.check = deleteIndex !== -1 ? true : false;
+
+            this.$nextTick(() => {
+                this.flash = true;
+            });
         },
         updateRole(check) {
             if (!this.flash) return;
@@ -214,6 +212,10 @@ export default {
         // }
     },
     watch: {
+        tree_pm() {
+            this.flash = false;
+            this.initCheck();
+        },
         // 根据当前的check值的变化，改变子节点的check值
         check(newValue) {
             // check值改变时，更新role_pm数组
@@ -263,6 +265,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "~@/assets/icon/iconfont.css";
+
 $lighten-5: #1a1d1e;
 $lighten-4: #589bad;
 $lighten-3: #c3c3e5;

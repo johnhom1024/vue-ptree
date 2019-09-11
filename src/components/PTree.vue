@@ -30,6 +30,11 @@ export default {
             this.tree_pm = [].concat(this.role_pm);
         }
     },
+    watch: {
+        role_pm() {
+            this.init();
+        }
+    }
 };
 </script>
 
