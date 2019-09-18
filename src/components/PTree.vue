@@ -11,7 +11,9 @@ export default {
         // 所有的权限
         full_pm: Array,
         // 拥有的权限，用于返回新的权限
-        role_pm: Array
+        role_pm: Array,
+        // 时间戳，用来更新tree_pm
+        timestamp: String,
     },
     components: {
         TreeItem
@@ -31,7 +33,7 @@ export default {
         }
     },
     watch: {
-        role_pm() {
+        timestamp() {
             this.init();
         }
     }
