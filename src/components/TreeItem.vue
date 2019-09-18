@@ -3,7 +3,7 @@
  * @Date: 2019-06-17 11:50:36
  * @Author: jawnwa22
  * @LastEditors: jawnwa22
- * @LastEditTime: 2019-09-11 19:50:21
+ * @LastEditTime: 2019-09-18 18:13:07
  -->
 <template lang="pug">
     li.item
@@ -15,7 +15,7 @@
                 div.iconfont.icon-minus(v-else)
             div.item-icon.icon-check.pointer(@click="switchCheck")
                 div.iconfont(:class="iconType[status]")
-            div.item-title {{node.name}}
+            div.item-title {{node.name}} {{node.type}}
         ul(v-show="open")
             li-item(
                 v-for="item in childNode" 
@@ -150,6 +150,11 @@ export default {
             return sortChild;
         },
         // 根据所有子节点的check值更新当前节点的状态
+        // 新增功能： 子节点的type也会影响status的值
+        // type 为3时，说明该节点为按钮，按钮全部取消勾选时，父节点不改变
+        // 存在的问题： 当根节点取消勾选时，会出现部分节点的status值为some的情况
+        // 所以当父节点改变当前节点，或者手动取消勾选该节点的情况下，status的值为false
+        // 问题已经解决： 通过判断多一个条件：this.check 是否为true，为false时说明该节点由父节点控制取消，因此不返回some而是返回none
         status() {
             if (!this.childRef) return this.check ? "all" : "none";
             let total = 0; // check值为true的子节点之和
@@ -159,7 +164,16 @@ export default {
             // 根据total决定status的值
             switch (total) {
                 case 0: // 子节点都没有被选中
-                    return "none";
+                    // // 查看第一个子节点是否存在type=3的子节点 并且当前节点为勾选的状态，则返回some值
+                    if (
+                        this.childRef.length &&
+                        this.childRef[0].node.type === 3 &&
+                        this.check === true
+                    ) {
+                        return "some";
+                    } else {
+                        return "none";
+                    }
                 case this.childRef.length: // 子节点都处于选中状态
                     return "all";
                 default:
@@ -275,6 +289,10 @@ $lighten-1: #f9ce8c;
 
 .pointer {
     cursor: pointer;
+}
+
+ul {
+    padding-left: 40px;
 }
 
 .item-header {
