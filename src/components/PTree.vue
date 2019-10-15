@@ -1,7 +1,7 @@
 <template lang="pug">
     div.p-tree
         ul.p-tree-content
-            tree-item(:full_pm="full_pm" :role_pm="role_pm" :tree_pm="tree_pm") 
+            tree-item(:full_pm="full_pm" :role_pm="role_pm" :tree_pm="tree_pm" :allowGetParentNode="allowGetParentNode") 
 </template>
 
 <script>
@@ -9,11 +9,22 @@ import TreeItem from "@/components/TreeItem.vue";
 export default {
     props: {
         // 所有的权限
-        full_pm: Array,
+        full_pm: {
+            type: Array,
+            default: () => []
+        },
         // 拥有的权限，用于返回新的权限
-        role_pm: Array,
+        role_pm: {
+            type: Array,
+            default: () => []
+        }, 
         // 时间戳，用来更新tree_pm
         timestamp: String,
+        // 允许返回父节点
+        allowGetParentNode: {
+            type: Boolean,
+            default: true
+        }
     },
     components: {
         TreeItem
