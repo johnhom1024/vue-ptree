@@ -3,7 +3,7 @@
  * @Date: 2019-06-17 11:50:36
  * @Author: jawnwa22
  * @LastEditors: jawnwa22
- * @LastEditTime: 2019-09-18 18:13:07
+ * @LastEditTime: 2019-10-13 23:43:16
  -->
 <template lang="pug">
     li.item
@@ -143,7 +143,7 @@ export default {
 
             let sortChild = child.sort((a, b) => {
                 if (a.name < b.name) return -1;
-                if (a.name < b.name) return 1;
+                if (a.name > b.name) return 1;
                 return 0;
             });
 
@@ -164,7 +164,7 @@ export default {
             // 根据total决定status的值
             switch (total) {
                 case 0: // 子节点都没有被选中
-                    // // 查看第一个子节点是否存在type=3的子节点 并且当前节点为勾选的状态，则返回some值
+                    // 查看第一个子节点是否存在type=3的子节点 并且当前节点为勾选的状态，则返回some值
                     if (
                         this.childRef.length &&
                         this.childRef[0].node.type === 3 &&
