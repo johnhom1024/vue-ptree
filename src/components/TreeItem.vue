@@ -3,7 +3,7 @@
  * @Date: 2019-06-17 11:50:36
  * @Author: jawnwa22
  * @LastEditors: jawnwa22
- * @LastEditTime: 2019-10-13 23:43:16
+ * @LastEditTime: 2019-10-15 14:11:17
  -->
 <template lang="pug">
     li.item
@@ -24,6 +24,7 @@
                 :full_pm="full_pm"
                 :role_pm="role_pm"
                 :tree_pm="tree_pm"
+                :allowGetParentNode="allowGetParentNode"
                 ref="child")
 
 </template>
@@ -47,7 +48,12 @@ export default {
         // 传入拥有的权限，用于更新组件
         tree_pm: Array,
         // 传入拥有的权限，用于返回新的权限列表
-        role_pm: Array
+        role_pm: Array,
+        // 允许返回父节点
+        allowGetParentNode: {
+            type: Boolean,
+            default: true
+        }
     },
     data() {
         return {
@@ -88,15 +94,19 @@ export default {
         toggle() {
             this.open = !this.open;
         },
-        // 初始化
+        // 初始化childRef
         init() {
             if (
                 this.$refs.child &&
-                this.$refs.child.length !== this.childNode.length
+                this.$refs.child.length == this.childNode.length
             ) {
-                this.init();
-            } else {
                 this.childRef = this.$refs.child;
+            } else {
+                // 如果不使用setTimeout则会在页面渲染完毕之前不停的递归，导致浏览器栈溢出
+                // 目前还没有遇到更好的方案
+                setTimeout(() => {
+                    this.init();
+                }, 500);
             }
         },
         // 初始化check的值
@@ -156,7 +166,7 @@ export default {
         // 所以当父节点改变当前节点，或者手动取消勾选该节点的情况下，status的值为false
         // 问题已经解决： 通过判断多一个条件：this.check 是否为true，为false时说明该节点由父节点控制取消，因此不返回some而是返回none
         status() {
-            if (!this.childRef) return this.check ? "all" : "none";
+            if (this.childRef && !this.childRef.length) return this.check ? "all" : "none";
             let total = 0; // check值为true的子节点之和
             this.childRef.forEach(item => {
                 item.check ? total++ : 0;
@@ -181,7 +191,7 @@ export default {
             }
         },
         countTotal() {
-            if (!this.childRef) return -1;
+            if (!this.childRef.length) return -1;
             let total = 0; // check值为1的子节点之和
             this.childRef.forEach(item => {
                 item.check ? total++ : 0;
@@ -239,7 +249,7 @@ export default {
                 return;
             }
             // 无子节点时无需更新子节点的状态
-            if (!this.childRef) {
+            if (!this.childRef.length) {
                 this.lock = true;
                 return;
             }
